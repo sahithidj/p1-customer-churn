@@ -92,6 +92,7 @@ st.header("Explore Churn by Selected Features")
 additional_features = ["Tenure", "Total Spend", "Usage Frequency", "Last Interaction"]
 
 selected = st.multiselect("Select feature(s) to explore churn trends:", additional_features)
+st.info(" Select one or more features to visualize.")
 
 # Show a boxplot for each selected feature
 if selected:
@@ -104,7 +105,7 @@ if selected:
         else:
             st.warning(f"⚠️ Feature '{feat}' not found in your dataset.")
 
-    st.info("👈 Select one or more features to visualize.")
+
 
 
 
