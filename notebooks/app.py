@@ -91,14 +91,20 @@ with chart_col4:
 st.header("Explore Churn by Selected Features")
 additional_features = ["Tenure", "Total Spend", "Usage Frequency", "Last Interaction"]
 
-for feature in additional_features: 
-    st.subheader(f"{feature}")
-    if feature in data.columns: 
-        fig, ax = plt.subplots()
-        sns.boxplot(x="Churn", y=feature, data=data, ax=ax)
-        st.pyplot(fig)
-    else: 
-       st.warning(f"'{feature}' not found in your dataset.")
+selected = st.multiselect("Select feature(s) to explore churn trends:", additional_features)
+
+# Show a boxplot for each selected feature
+if selected:
+    for feat in selected:
+        if feat in data.columns:
+            st.subheader(f"Churn vs {feat}")
+            fig, ax = plt.subplots()
+            sns.boxplot(data=data, x="Churn", y=feat, ax=ax)
+            st.pyplot(fig)
+        else:
+            st.warning(f"⚠️ Feature '{feat}' not found in your dataset.")
+else:
+    st.info("👈 Select one or more features to visualize.")
 
 
 
