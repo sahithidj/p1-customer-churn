@@ -6,7 +6,6 @@ import plotly.express as px
 import joblib
 from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.metrics import classification_report
-import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
 # App layout setup
@@ -19,7 +18,7 @@ st.set_page_config(
 # Load the data
 @st.cache_data
 def load_data():
-    data = pd.read_csv("customer_churn_dataset-training-master.csv")
+    data = pd.read_csv("notebooks/customer_churn_dataset-training-master.csv")
     return data
 
 data = load_data()
