@@ -87,6 +87,19 @@ with chart_col4:
     st.pyplot(fig)
 
 
+### ------ feature selection -------
+st.header("Explore Churn by Selected Features")
+additional_features = ["Tenure", "Total Spend", "Usage Frequency", "Last Interaction"]
+
+for feature in additional_features: 
+    st.subheader(f"{feature}")
+    if feature in data.columns: 
+        fig, ax = plt.subplots()
+        sns.boxplot(x="Churn", y=feature, data=data, ax=ax)
+        st.pyplot(fig)
+    else: 
+       st.warning(f"'{feature}' not found in your dataset.")
+
 
 
 
