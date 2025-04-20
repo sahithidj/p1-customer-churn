@@ -106,6 +106,11 @@ if selected:
             st.warning(f"⚠️ Feature '{feat}' not found in your dataset.")
 
 
+### customer segmentation: 
+st.subheader("Customer Segment Churn Prediction")
+age_segment = st.selectbox("Select Age Group", ["<25", "25-40", "40-60", "60+"])
+
+
 
 
 
