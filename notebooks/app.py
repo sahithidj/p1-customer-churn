@@ -98,12 +98,12 @@ if selected:
     for feat in selected:
         if feat in data.columns:
             st.subheader(f"Churn vs {feat}")
-            fig, ax = plt.subplots()
+            fig, ax = plt.subplots(figsize=(8,5))
             sns.boxplot(data=data, x="Churn", y=feat, ax=ax)
             st.pyplot(fig)
         else:
             st.warning(f"⚠️ Feature '{feat}' not found in your dataset.")
-else:
+
     st.info("👈 Select one or more features to visualize.")
 
 
