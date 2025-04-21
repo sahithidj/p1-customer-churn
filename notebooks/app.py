@@ -135,18 +135,18 @@ def categorize_age(age):
     else:
         return "60+"
 
-churn_data['age_group'] = churn_data['age'].apply(categorize_age)
+data['Age'] = data['Age'].apply(categorize_age)
 
 # Filter the churn data by the selected age groups
-filtered_data = churn_data[churn_data['age_group'].isin(selected_ages)]
+filtered_data = data[data['Age'].isin(selected_ages)]
 
 # Calculate churn rates by age group
-churn_by_age = filtered_data.groupby('age_group')['churn'].mean().reset_index()
+churn_by_age = filtered_data.groupby('Age')['Churn'].mean().reset_index()
 
 # Plot churn rates by age group
 st.write("Churn Rate by Age Group")
 plt.figure(figsize=(8, 6))
-sns.barplot(x='age_group', y='churn', data=churn_by_age)
+sns.barplot(x='Age', y='Churn', data=data)
 plt.xlabel('Age Group')
 plt.ylabel('Churn Rate')
 plt.title('Churn Rate by Age Group')
