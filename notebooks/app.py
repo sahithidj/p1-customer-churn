@@ -107,6 +107,9 @@ if selected:
 
 
 ### customer segmentation: 
+st.subheader("Customer Segment Churn Prediction")
+
+# Checkbox for different age groups
 age_25 = st.checkbox("<25")
 age_25_40 = st.checkbox("25-40")
 age_40_60 = st.checkbox("40-60")
@@ -135,23 +138,23 @@ def categorize_age(age):
     else:
         return "60+"
 
-data['Age'] = data['Age'].apply(categorize_age)
+# Apply the categorize_age function to the 'Age' column
+data['age_group'] = data['Age'].apply(categorize_age)
 
-# Filter the churn data by the selected age groups
-filtered_data = data[data['Age'].isin(selected_ages)]
+# Filter the data by the selected age groups
+filtered_data = data[data['age_group'].isin(selected_ages)]
 
 # Calculate churn rates by age group
-churn_by_age = filtered_data.groupby('Age')['Churn'].mean().reset_index()
+churn_by_age = filtered_data.groupby('age_group')['Churn'].mean().reset_index()
 
 # Plot churn rates by age group
 st.write("Churn Rate by Age Group")
 plt.figure(figsize=(8, 6))
-sns.barplot(x='Age', y='Churn', data=data)
+sns.barplot(x='age_group', y='Churn', data=churn_by_age)
 plt.xlabel('Age Group')
 plt.ylabel('Churn Rate')
 plt.title('Churn Rate by Age Group')
 st.pyplot(plt)
-
 
 
 
