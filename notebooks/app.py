@@ -99,9 +99,9 @@ if selected:
     for feat in selected:
         if feat in data.columns:
             st.subheader(f"Churn vs {feat}")
-            fig, ax = plt.subplots(figsize=(8,5))
-            sns.boxplot(data=data, x="Churn", y=feat, ax=ax)
-            st.pyplot(fig)
+            fig = px.box(data, x="Churn", y=feat, title=f"Churn vs {feat}")
+            fig.update_layout(width=600, height=400)  # Set desired size
+            st.plotly_chart(fig)  # Display the plotly chart
         else:
             st.warning(f"⚠️ Feature '{feat}' not found in your dataset.")
 
