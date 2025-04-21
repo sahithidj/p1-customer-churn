@@ -148,14 +148,10 @@ filtered_data = data[data['age_group'].isin(selected_ages)]
 churn_by_age = filtered_data.groupby('age_group')['Churn'].mean().reset_index()
 
 # Plot churn rates by age group
-with st.container():
-    plt.figure(figsize=(6, 4))
-    sns.barplot(x='age_group', y='Churn', data=churn_by_age)
-    plt.xlabel('Age Group')
-    plt.ylabel('Churn Rate')
-    plt.title('Churn Rate by Age Group')
-    st.pyplot(plt)
 
+fig = px.bar(churn_by_age, x='age_group', y='Churn')
+fig.update_layout(width=600, height=400)
+st.plotly_chart(fig)
 
 
 
